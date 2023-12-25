@@ -37,11 +37,29 @@ if len(vote1)>len(vote2) and len(vote1)>len(vote3):
 elif len(vote2)>len(vote1) and len(vote2) >len(vote3):
    winner=candidates_unique[1]  
 else:
-   winner=candidates_unique[2]    
-print("Election Results")
-print("-------------------")
-print(f"Total votes: {len(total_votes)}")
-print(f"{candidates_unique[0]}: {(round(len(vote1)/len(total_votes)*100,3))}% ({(len(vote1))}) ")   
-print(f"{candidates_unique[1]}: {(round(len(vote2)/len(total_votes)*100,3))}% ({(len(vote2))}) ")
-print(f"{candidates_unique[2]}: {(round(len(vote3)/len(total_votes)*100,3))}% ({(len(vote3))}) ")
-print(f"winner: {winner}")
+   winner=candidates_unique[2] 
+#To export a txt file with the result
+output_path=os.path.join("analysis","analysis.txt")
+with open(output_path,'w') as csvfile:
+    csvwriter=csv.writer(csvfile,delimiter=',')
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["--------------"])
+    csvwriter.writerow([f"Total votes: {len(total_votes)}"])
+    csvwriter.writerow(["---------------------"])
+    csvwriter.writerow([f"{candidates_unique[0]}: {(round(len(vote1)/len(total_votes)*100,3))}% ({(len(vote1))})"])
+    csvwriter.writerow([f"{candidates_unique[1]}: {(round(len(vote2)/len(total_votes)*100,3))}% ({(len(vote2))})"])
+    csvwriter.writerow([f"{candidates_unique[2]}: {(round(len(vote3)/len(total_votes)*100,3))}% ({(len(vote3))})"])
+    csvwriter.writerow(["----------------------------------"])
+    csvwriter.writerow([f"winner: {winner}"])
+    csvwriter.writerow(["----------------------------------"])
+#To print output to terminal   
+print("Election Results\n")
+print("-------------------\n")
+print(f"Total votes: {len(total_votes)}\n")
+print("-------------------\n")
+print(f"{candidates_unique[0]}: {(round(len(vote1)/len(total_votes)*100,3))}% ({(len(vote1))})\n ")   
+print(f"{candidates_unique[1]}: {(round(len(vote2)/len(total_votes)*100,3))}% ({(len(vote2))})\n ")
+print(f"{candidates_unique[2]}: {(round(len(vote3)/len(total_votes)*100,3))}% ({(len(vote3))})\n ")
+print("-------------------\n")
+print(f"winner: {winner}\n")
+print("-------------------\n")
