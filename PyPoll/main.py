@@ -8,6 +8,7 @@ total_votes=[]
 vote1=[]
 vote2=[]
 vote3=[]
+#reading csv file to find unique values of candidate and county and store in a list
 csvpath=os.path.join("Resources","election_data.csv")
 with open(csvpath) as csvfile:
     csvreader=csv.reader(csvfile,delimiter=',')
@@ -22,6 +23,7 @@ with open(csvpath) as csvfile:
     for candidate in candidates:       
         if candidate not in candidates_unique:
                 candidates_unique.append(candidate)
+#to find the total per candidate                
 with open(csvpath) as csvfile:
         csvreader=csv.reader(csvfile,delimiter=',')
         csvheader=next(csvreader)
@@ -32,6 +34,7 @@ with open(csvpath) as csvfile:
                 vote2.append(row[0])
             if row[2]==candidates_unique[2]:
                 vote3.append(row[0])
+#to find winner
 if len(vote1)>len(vote2) and len(vote1)>len(vote3):
    winner=candidates_unique[0]
 elif len(vote2)>len(vote1) and len(vote2) >len(vote3):
